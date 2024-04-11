@@ -1,5 +1,5 @@
 # Kryptokrona <!-- omit in toc -->
-[![build](https://img.shields.io/github/actions/workflow/status/kryptokrona/kryptokrona/master-ci.yml?branch=master)](https://github.com/kryptokrona/kryptokrona/actions/workflows/master-ci.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/kryptokrona/kryptokrona-rs/ci.yml?branch=master)](https://github.com/kryptokrona/kryptokrona/actions/workflows/ci.yml)
 [![kryptokrona: rustc 1.77.1+](https://img.shields.io/badge/kryptokrona-rustc_1.77.1+-lightgray.svg)](https://blog.rust-lang.org/2024/03/28/Rust-1.77.1.html)
 [![release](https://img.shields.io/github/v/release/kryptokrona/kryptokrona-rs)](https://img.shields.io/github/v/release/kryptokrona/kryptokrona)
 [![license](https://img.shields.io/badge/license-bsd%203--clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
