@@ -1,0 +1,90 @@
+# This is the new workflow replacing 'master-ci.yml' for the C++ -> Rust transition
+
+name: build
+
+on:
+  push:
+    branches:
+      - rust # change this to master later
+  pull_request:
+    branches:
+      - rust # change this to master later
+    paths-ignore:
+      - "**/README.md"
+      - "**/LICENSE"
+      - "**/SECURITY.md"
+      - "**/.gitignore"
+      - "**/resources/**"
+      - "**/.github/ISSUE_TEMPLATE/**"
+
+jobs:
+  build:
+    name: build ${{ matrix.config.name }} (${{ matrix.config.arch }})
+    runs-on: ${{ matrix.config.os }}
+
+    strategy:
+      fail-fast: true
+      matrix:
+        config:
+          - {
+              name: "macos 14",
+              os: macos-latest,
+              args: "aarch64-apple-darwin",
+              arch: arm64,
+            }
+          - {
+              name: "macos 14",
+              os: macos-latest,
+              args: "x86_64-apple-darwin",
+              arch: x86_64,
+            }
+          - {
+              name: "ubuntu 22.04",
+              os: ubuntu-22.04,
+              args: "x86_64-unknown-linux-gnu",
+              arch: x86_64,
+            }
+          - {
+              name: "ubuntu 20.04",
+              os: ubuntu-20.04,
+              args: "x86_64-unknown-linux-gnu",
+              arch: x86_64,
+            }
+          # we will add ubuntu and windows here once we get macos working
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+
+      - name: Install macOS Dependencies
+        if: startsWith(matrix.config.name, 'macos')
+        run: |
+          rustup target add ${{ matrix.config.args }}
+          brew install protobuf
+
+      - name: Install Ubuntu Dependencies
+        if: startsWith(matrix.config.name, 'ubuntu')
+        run: |
+          rustup target add ${{ matrix.config.args }}
+          sudo apt install protobuf-compiler
+
+      - name: Cache Cargo Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Run Clippy
+        run: cargo clippy --all-features --target ${{ matrix.config.args }}
+
+      - name: Build Project
+        run: cargo build --release --target ${{ matrix.config.args }}
+
+      #- name: Run Tests
+      #  run: cargo test --release --target ${{ matrix.config.args }}
