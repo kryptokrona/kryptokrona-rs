@@ -3,10 +3,10 @@ name: build
 on:
   push:
     branches:
-      - rust # change this to master later
+      - master
   pull_request:
     branches:
-      - rust # change this to master later
+      - master
     paths-ignore:
       - "**/README.md"
       - "**/LICENSE"
