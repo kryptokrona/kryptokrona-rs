@@ -26,7 +26,9 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+use std::sync::{Arc, Mutex};
 use tonic::{Request, Response, Status};
+use base::wb::WalletBackend;
 
 use crate::api::node::{
     node_server::Node, GetNodeDetailsRequest, GetNodeDetailsResponse, GetStatusRequest,
@@ -43,6 +45,26 @@ impl Node for NodeHandler {
         request: Request<GetStatusRequest>,
     ) -> Result<Response<GetStatusResponse>, Status> {
         println!("Received request from: {:?}", request);
+
+        let wb = WalletBackend {
+            filename: "".to_string(),
+            password: "".to_string(),
+            // daemon: Arc::new(Mutex::new((Node))),
+        };
+
+        //     const auto [daemonHost, daemonPort] = m_walletBackend->getNodeAddress();
+
+        // const auto [nodeFee, nodeAddress] = m_walletBackend->getNodeFee();
+
+        // nlohmann::json j{
+        //     {"daemonHost", daemonHost},
+        //     {"daemonPort", daemonPort},
+        //     {"nodeFee", nodeFee},
+        //     {"nodeAddress", nodeAddress}};
+
+        // res.set_content(j.dump(4) + "\n", "application/json");
+
+        // return {SUCCESS, 200};
 
         let response = GetStatusResponse {};
 
