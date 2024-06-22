@@ -11,14 +11,14 @@ repository = "https://github.com/kryptokrona/kryptokrona.git"
 rust-version = "1.77.1"
 
 [[bin]]
-name = "wallet_api"
+name = "kryptokrona_wallet_api"
 path = "src/main.rs"
 
 [dev-dependencies]
-kryptokrona_core = { version = "0.2.0", path = "../kryptokrona_core" }
+kryptokrona_core = { path = "../kryptokrona_core" }
 
 [dependencies]
-kryptokrona_core = { version = "0.2.0", path = "../kryptokrona_core" }
+kryptokrona_core = { path = "../kryptokrona_core" }
 tokio = { version = "1", features = ["full"] }
 clap = { version = "4.5.4", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
