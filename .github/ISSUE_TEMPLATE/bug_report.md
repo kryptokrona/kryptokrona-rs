@@ -13,7 +13,7 @@ assignees: ''
 * Is this *really* a bug?
   - If the behavior is documented, but you disagree with it, please do file an issue, but as a "Design consideration," not a "Bug report."
   - If you don't understand why something behaves the way it does, consider asking on [Discord](https://discord.gg/VTgsTGS9b7).
-* Is the problem not in some third-party library, not in [Kryptokrona](https://github.com/kryptokrona/kryptokrona-rs/issues)?
+* Is the problem not in some third-party library, not in [Kryptokrona](https://github.com/kryptokrona/kryptokrona-rs-rs/issues)?
 * Maybe you're using some ancient version, and the problem doesn't happen with the latest releases of the compiler and the library?
 -->
 

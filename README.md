@@ -1,7 +1,6 @@
 # Kryptokrona <!-- omit in toc -->
-[![build](https://img.shields.io/github/actions/workflow/status/kryptokrona/kryptokrona/ci.yml?branch=rust)](https://github.com/kryptokrona/kryptokrona/actions/workflows/ci.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/kryptokrona/kryptokrona/ci.yml?branch=rust)](https://github.com/kryptokrona/kryptokrona-rs/actions/workflows/ci.yml)
 [![kryptokrona: rustc 1.77.1+](https://img.shields.io/badge/kryptokrona-rustc_1.77.1+-lightgray.svg)](https://blog.rust-lang.org/2024/03/28/Rust-1.77.1.html)
-[![release](https://img.shields.io/github/v/release/kryptokrona/kryptokrona)](https://img.shields.io/github/v/release/kryptokrona/kryptokrona)
 [![license](https://img.shields.io/badge/license-bsd%203--clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![discord](https://img.shields.io/discord/562673808582901793?label=discord)](https://discord.gg/VTgsTGS9b7)
 
@@ -40,7 +39,7 @@ Are you having trouble with Kryptokrona? We want to help!
 
 - Ask a question we monitor stackoverflow.com for questions tagged with kryptokrona. You can also chat with the community on Hugin or Discord.
 
-- Report bugs with Kryptokrona at https://github.com/kryptokrona/kryptokrona/issues.
+- Report bugs with Kryptokrona at https://github.com/kryptokrona/kryptokrona-rs/issues.
 
 - Join the Discussion and be part of the community at Discord: https://discord.gg/VTgsTGS9b7
 

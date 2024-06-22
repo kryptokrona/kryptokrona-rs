@@ -47,7 +47,8 @@ pub struct Thor {
 }
 
 impl Thor {
-    fn new(daemon_host: String, daemon_port: i8) -> Self {
+    #[allow(dead_code)]
+    pub fn new(daemon_host: String, daemon_port: i8) -> Self {
         let timeout = Duration::from_secs(10);
         // TODO: create a new Hyper Client here
         // let http_client = Arc::new(Mutex::new(Client::new(
@@ -70,7 +71,8 @@ impl Thor {
         }
     }
 
-    fn swap_node(&mut self, daemon_host: String, daemon_port: i8) {
+    #[allow(dead_code)]
+    pub fn swap_node(&mut self, daemon_host: String, daemon_port: i8) {
         self.stop();
 
         self.local_daemon_block_count = 0;
@@ -91,7 +93,8 @@ impl Thor {
         self.init();
     }
 
-    fn stop(&mut self) {
+    #[allow(dead_code)]
+    pub fn stop(&mut self) {
         self.should_stop = true;
         if let Some(handle) = thread::current().name() {
             if handle == "background_thread" {
@@ -102,13 +105,15 @@ impl Thor {
         }
     }
 
-    fn init(&mut self) {
+    #[allow(dead_code)]
+    pub fn init(&mut self) {
         self.should_stop = false;
 
         self.get_daemon_info();
         self.get_fee_info();
 
         // let http_client = Arc::clone(&self.http_client);
+        #[allow(unused_variables)]
         let timeout = self.timeout;
         // thread::Builder::new()
         //     .name("background_thread".to_string())
@@ -121,26 +126,32 @@ impl Thor {
         //     .unwrap();
     }
 
+    #[allow(dead_code)]
     pub fn get_fee(&mut self) -> f64 {
         0.0
     }
 
+    #[allow(dead_code)]
     pub fn get_address(&mut self) -> String {
         String::new()
     }
 
+    #[allow(dead_code)]
     pub fn get_host(&mut self) -> String {
         self.daemon_host.clone()
     }
 
+    #[allow(dead_code)]
     pub fn get_port(&mut self) -> i8 {
         self.daemon_port.clone()
     }
 
+    #[allow(dead_code)]
     pub fn get_daemon_info(&mut self) -> String {
         String::new()
     }
 
+    #[allow(dead_code)]
     pub fn get_fee_info(&mut self) -> String {
         String::new()
     }
