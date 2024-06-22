@@ -60,7 +60,9 @@ impl Address for AddressHandler {
     ) -> Result<Response<CreateIntegratedAddressResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = CreateIntegratedAddressResponse {};
+        let response = CreateIntegratedAddressResponse {
+            integrated_address: String::from(""),
+        };
 
         Ok(Response::new(response))
     }

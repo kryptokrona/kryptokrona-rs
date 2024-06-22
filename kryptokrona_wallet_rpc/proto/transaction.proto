@@ -30,17 +30,17 @@ message GetTransactionsFromHeightWithAddressResponse {}
 message GetTransactionsFromHeightToHeightWithAddressResponse {}
 message GetTransactionDetailsResponse {}
 message SendBasicTransactionResponse {
-    enum Status {
-        SUCCESS = 0;
-        ERROR = 1;
-    }
-    
-    Status status = 1;
-    uint32 http_status_code = 2;
+    string transaction_hash = 1;
 }
-message SendAdvancedTransactionResponse {}
-message SendFusionBasicTransactionResponse {}
-message SendFusionAdvancedTransactionResponse {}
+message SendAdvancedTransactionResponse {
+    string transaction_hash = 1;
+}
+message SendFusionBasicTransactionResponse {
+    string transaction_hash = 1;
+}
+message SendFusionAdvancedTransactionResponse {
+    string transaction_hash = 1;
+}
 
 // Transaction service definition.
 service Transaction {

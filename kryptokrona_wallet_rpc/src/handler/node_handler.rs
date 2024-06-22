@@ -28,6 +28,7 @@
 
 use std::sync::{Arc, Mutex};
 use tonic::{Request, Response, Status};
+use kryptokrona_core::{Thor, WalletBackend};
 
 use crate::api::node::{
     node_server::Node, GetNodeDetailsRequest, GetNodeDetailsResponse, GetStatusRequest,
@@ -45,25 +46,6 @@ impl Node for NodeHandler {
     ) -> Result<Response<GetStatusResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        // let wallet = WalletBackend {
-        //     filename: "".to_string(),
-        //     password: "".to_string(),
-        //     // daemon: Arc::new(Mutex::new((Node))),
-        //     daemon: Arc::new(Mutex::new(Thor {
-        //         timeout: Default::default(),
-        //         daemon_host: "".to_string(),
-        //         daemon_port: 0,
-        //         should_stop: false,
-        //         local_daemon_block_count: 0,
-        //         network_block_count: 0,
-        //         peer_count: 0,
-        //         last_known_hashrate: 0,
-        //         node_fee_address: "".to_string(),
-        //         node_fee_amount: 0,
-        //         background_thread: None,
-        //     })),
-        // };
-
         //     const auto [daemonHost, daemonPort] = m_walletBackend->getNodeAddress();
 
         // const auto [nodeFee, nodeAddress] = m_walletBackend->getNodeFee();
@@ -78,7 +60,15 @@ impl Node for NodeHandler {
 
         // return {SUCCESS, 200};
 
-        let response = GetStatusResponse {};
+        let response = GetStatusResponse {
+            wallet_block_count: 0,
+            local_daemon_block_count: 0,
+            network_block_count: 0,
+            peer_count: 0,
+            hashrate: 0,
+            is_view_wallet: false,
+            subwallet_count: 0,
+        };
 
         Ok(Response::new(response))
     }

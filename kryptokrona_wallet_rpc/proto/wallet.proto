@@ -32,7 +32,7 @@ message OpenWalletResponse {
   }
   
   Status status = 1;
-  uint32 http_status_code = 2;
+  int32 http_status_code = 2;
 }
 message WalletImportKeyResponse {}
 message WalletImportSeedResponse {}
@@ -41,13 +41,32 @@ message WalletCreateResponse {}
 message SaveWalletResponse {}
 message ResetWalletResponse {}
 message CloseWalletResponse {}
-message GetBalanceResponse {}
-message GetBalanceForAddressResponse {}
-message GetBalancesResponse {}
-message GetPrivateViewKeyResponse {}
-message GetSpendKeysResponse {}
-message GetMnemonicSeedResponse {}
-message GetTxPrivateKeyResponse {}
+message GetBalanceResponse {
+  int64 unlocked = 1;
+  int64 locked = 2;
+}
+message GetBalanceForAddressResponse {
+  int64 unlocked = 1;
+  int64 locked = 2;
+}
+message GetBalancesResponse {
+  string address = 1;
+  int64 unlocked = 2;
+  int64 locked = 3;
+}
+message GetPrivateViewKeyResponse {
+  string private_view_key = 1;
+}
+message GetSpendKeysResponse {
+  string public_spend_key = 1;
+  string private_spend_key = 2;
+}
+message GetMnemonicSeedResponse {
+  string mnemonic_seed = 1;
+}
+message GetTxPrivateKeyResponse {
+  int64 transaction_private_key = 1;
+}
 
 // Wallet service definition.
 service Wallet {

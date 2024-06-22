@@ -148,8 +148,7 @@ impl Transaction for TransactionHandler {
         println!("Received request from: {:?}", request);
 
         let response = SendBasicTransactionResponse {
-            status: 200,
-            http_status_code: 200,
+            transaction_hash: String::from(""),
         };
 
         Ok(Response::new(response))
@@ -161,7 +160,9 @@ impl Transaction for TransactionHandler {
     ) -> Result<Response<SendAdvancedTransactionResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = SendAdvancedTransactionResponse {};
+        let response = SendAdvancedTransactionResponse {
+            transaction_hash: String::from(""),
+        };
 
         Ok(Response::new(response))
     }
@@ -172,7 +173,9 @@ impl Transaction for TransactionHandler {
     ) -> Result<Response<SendFusionBasicTransactionResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = SendFusionBasicTransactionResponse {};
+        let response = SendFusionBasicTransactionResponse {
+            transaction_hash: String::from(""),
+        };
 
         Ok(Response::new(response))
     }
@@ -183,7 +186,9 @@ impl Transaction for TransactionHandler {
     ) -> Result<Response<SendFusionAdvancedTransactionResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = SendFusionAdvancedTransactionResponse {};
+        let response = SendFusionAdvancedTransactionResponse {
+            transaction_hash: String::from(""),
+        };
 
         Ok(Response::new(response))
     }

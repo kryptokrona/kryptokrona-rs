@@ -1,4 +1,4 @@
 [workspace]
-members = ["kryptokrona_core", "kryptokrona_common", "kryptokrona_crypto", "kryptokrona_wallet_api"]
+members = ["kryptokrona_core", "kryptokrona_common", "kryptokrona_crypto", "kryptokrona_wallet_rpc"]
 
 resolver = "2"

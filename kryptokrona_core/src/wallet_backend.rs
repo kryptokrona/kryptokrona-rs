@@ -32,9 +32,11 @@ use crate::thor::Thor;
 pub struct WalletBackend {
     pub filename: String,
     pub password: String,
+    pub private_spend_key: String,
+    pub private_view_key: String,
+    pub scan_height: u64,
+    pub new_wallet: bool,
     pub daemon: Arc<Mutex<Thor>>,
-    // m_event_handler: Arc<EventHandler>,
-    // m_sub_wallets: Arc<SubWallets>,
 }
 
 impl WalletBackend {

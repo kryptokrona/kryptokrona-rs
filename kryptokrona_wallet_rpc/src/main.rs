@@ -26,7 +26,9 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+use std::sync::{Arc, Mutex};
 use kryptokrona_core::ascii::ASCII_ART;
+use kryptokrona_core::{Thor, WalletBackend};
 use crate::api::address::address_server::AddressServer;
 use crate::api::node::node_server::NodeServer;
 use crate::api::transaction;
@@ -53,11 +55,34 @@ mod handler {
 
 mod wallet_api_proto {
     pub(crate) const FILE_DESCRIPTOR_SET: &[u8] =
-        tonic::include_file_descriptor_set!("wallet_api_descriptor");
+        tonic::include_file_descriptor_set!("kryptokrona_wallet_rpc_descriptor");
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize WalletBackend service
+    let wb = WalletBackend {
+        filename: "".to_string(),
+        password: "".to_string(),
+        private_spend_key: "".to_string(),
+        private_view_key: "".to_string(),
+        scan_height: 0,
+        new_wallet: false,
+        daemon: Arc::new(Mutex::new(Thor {
+            timeout: Default::default(),
+            daemon_host: "".to_string(),
+            daemon_port: 0,
+            should_stop: false,
+            local_daemon_block_count: 0,
+            network_block_count: 0,
+            peer_count: 0,
+            last_known_hashrate: 0,
+            node_fee_address: "".to_string(),
+            node_fee_amount: 0.0,
+            background_thread: None,
+        })),
+    };
+
     // Create handlers
     let address = AddressHandler::default();
     let node = NodeHandler::default();

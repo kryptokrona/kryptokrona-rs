@@ -8,7 +8,15 @@ message SetNodeInfoRequest {}
 message GetNodeDetailsRequest {}
 
 // Response messages
-message GetStatusResponse {}
+message GetStatusResponse {
+    int64 wallet_block_count = 1;
+    int64 local_daemon_block_count = 2;
+    int64 network_block_count = 3;
+    int64 peer_count = 4;
+    int64 hashrate = 5;
+    bool is_view_wallet = 6;
+    int64 subwallet_count = 7;
+}
 message SetNodeInfoResponse {}
 message GetNodeDetailsResponse {
     string daemon_host = 1;

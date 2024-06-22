@@ -15,7 +15,9 @@ message DeleteAddressRequest {}
 message GetPrimaryAddressResponse {
     string address = 1;
 }
-message CreateIntegratedAddressResponse {}
+message CreateIntegratedAddressResponse {
+    string integrated_address = 1;
+}
 message AddressesCreateResponse {}
 message AddressesImportResponse {}
 message AddressesImportViewResponse {}

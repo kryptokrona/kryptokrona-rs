@@ -6,7 +6,7 @@ fn main() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
 
     tonic_build::configure()
-        .file_descriptor_set_path(out_dir.join("wallet_api_descriptor.bin"))
+        .file_descriptor_set_path(out_dir.join("kryptokrona_wallet_rpc_descriptor.bin"))
         .build_server(true)
         .out_dir("src/api/")
         .compile(

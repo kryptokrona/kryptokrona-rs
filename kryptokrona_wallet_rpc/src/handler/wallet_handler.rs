@@ -135,7 +135,7 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetBalanceResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetBalanceResponse {};
+        let response = GetBalanceResponse { unlocked: 0, locked: 0 };
         Ok(Response::new(response))
     }
 
@@ -145,7 +145,7 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetBalanceForAddressResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetBalanceForAddressResponse {};
+        let response = GetBalanceForAddressResponse { unlocked: 0, locked: 0 };
         Ok(Response::new(response))
     }
 
@@ -155,7 +155,11 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetBalancesResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetBalancesResponse {};
+        let response = GetBalancesResponse {
+            address: String::from(""),
+            unlocked: 0,
+            locked: 0,
+        };
         Ok(Response::new(response))
     }
 
@@ -165,7 +169,7 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetPrivateViewKeyResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetPrivateViewKeyResponse {};
+        let response = GetPrivateViewKeyResponse { private_view_key: "".to_string() };
         Ok(Response::new(response))
     }
 
@@ -175,7 +179,7 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetSpendKeysResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetSpendKeysResponse {};
+        let response = GetSpendKeysResponse { public_spend_key: "".to_string(), private_spend_key: "".to_string() };
         Ok(Response::new(response))
     }
 
@@ -185,7 +189,7 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetMnemonicSeedResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetMnemonicSeedResponse {};
+        let response = GetMnemonicSeedResponse { mnemonic_seed: "".to_string() };
         Ok(Response::new(response))
     }
 
@@ -195,7 +199,7 @@ impl Wallet for WalletHandler {
     ) -> Result<Response<GetTxPrivateKeyResponse>, Status> {
         println!("Received request from: {:?}", request);
 
-        let response = GetTxPrivateKeyResponse {};
+        let response = GetTxPrivateKeyResponse { transaction_private_key: 0 };
         Ok(Response::new(response))
     }
 }

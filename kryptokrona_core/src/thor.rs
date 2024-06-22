@@ -30,24 +30,24 @@ use std::{
     thread,
     time::Duration,
 };
+use std::collections::HashMap;
+use reqwest::Error;
 
 pub struct Thor {
     pub timeout: Duration,
     pub daemon_host: String,
     pub daemon_port: i8,
-    // http_client: Arc<Mutex<Client>>,
     pub should_stop: bool,
     pub local_daemon_block_count: u64,
     pub network_block_count: u64,
     pub peer_count: u64,
     pub last_known_hashrate: u64,
     pub node_fee_address: String,
-    pub node_fee_amount: u32,
+    pub node_fee_amount: f64,
     pub background_thread: Option<thread::JoinHandle<()>>,
 }
 
 impl Thor {
-    #[allow(dead_code)]
     pub fn new(daemon_host: String, daemon_port: i8) -> Self {
         let timeout = Duration::from_secs(10);
         // TODO: create a new Hyper Client here
@@ -66,12 +66,11 @@ impl Thor {
             peer_count: 0,
             last_known_hashrate: 0,
             node_fee_address: String::new(),
-            node_fee_amount: 0,
+            node_fee_amount: 0.0,
             background_thread: None,
         }
     }
 
-    #[allow(dead_code)]
     pub fn swap_node(&mut self, daemon_host: String, daemon_port: i8) {
         self.stop();
 
@@ -93,7 +92,6 @@ impl Thor {
         self.init();
     }
 
-    #[allow(dead_code)]
     pub fn stop(&mut self) {
         self.should_stop = true;
         if let Some(handle) = thread::current().name() {
@@ -105,53 +103,79 @@ impl Thor {
         }
     }
 
-    #[allow(dead_code)]
     pub fn init(&mut self) {
         self.should_stop = false;
 
         self.get_daemon_info();
         self.get_fee_info();
-
-        // let http_client = Arc::clone(&self.http_client);
-        #[allow(unused_variables)]
-        let timeout = self.timeout;
-        // thread::Builder::new()
-        //     .name("background_thread".to_string())
-        //     .spawn(move || {
-        //         while !self.should_stop {
-        //             self.get_daemon_info();
-        //             thread::sleep(timeout);
-        //         }
-        //     })
-        //     .unwrap();
     }
 
-    #[allow(dead_code)]
     pub fn get_fee(&mut self) -> f64 {
-        0.0
+        self.node_fee_amount.clone()
     }
 
-    #[allow(dead_code)]
     pub fn get_address(&mut self) -> String {
         String::new()
     }
 
-    #[allow(dead_code)]
     pub fn get_host(&mut self) -> String {
         self.daemon_host.clone()
     }
 
-    #[allow(dead_code)]
     pub fn get_port(&mut self) -> i8 {
         self.daemon_port.clone()
     }
 
-    #[allow(dead_code)]
-    pub fn get_daemon_info(&mut self) -> String {
-        String::new()
+    pub async fn get_daemon_info(&mut self) -> Result<(), Error> {
+        let resp = reqwest::get(format!("https://{}:{}/info", self.daemon_host, self.daemon_port))
+            .await?
+            .json::<HashMap<String, String>>()
+            .await?;
+
+        // let response_text = format("{:#?}", resp.);
+        println!("{resp:#?}");
+
+            //     const auto res = m_httpClient->Get("/info");
+            //
+            // if (res && res->status == 200)
+            // {
+            //     try
+            //     {
+            //         json j = json::parse(res->body);
+            //
+            //         m_localDaemonBlockCount = j.at("height").get<uint64_t>();
+            //
+            //         /* Height returned is one more than the current height - but we
+            //            don't want to overflow is the height returned is zero */
+            //         if (m_localDaemonBlockCount != 0)
+            //         {
+            //             m_localDaemonBlockCount--;
+            //         }
+            //
+            //         m_networkBlockCount = j.at("network_height").get<uint64_t>();
+            //
+            //         /* Height returned is one more than the current height - but we
+            //            don't want to overflow is the height returned is zero */
+            //         if (m_networkBlockCount != 0)
+            //         {
+            //             m_networkBlockCount--;
+            //         }
+            //
+            //         m_peerCount = j.at("incoming_connections_count").get<uint64_t>() + j.at("outgoing_connections_count").get<uint64_t>();
+            //
+            //         m_lastKnownHashrate = j.at("difficulty").get<uint64_t>() / cryptonote::parameters::DIFFICULTY_TARGET;
+            //
+            //         return true;
+            //     }
+            //     catch (const json::exception &)
+            //     {
+            //     }
+            // }
+            //
+            // return false;
+        Ok(())
     }
 
-    #[allow(dead_code)]
     pub fn get_fee_info(&mut self) -> String {
         String::new()
     }
