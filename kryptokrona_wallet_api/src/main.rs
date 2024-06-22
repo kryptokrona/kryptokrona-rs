@@ -26,6 +26,7 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+use kryptokrona_core::ascii::ASCII_ART;
 use crate::api::address::address_server::AddressServer;
 use crate::api::node::node_server::NodeServer;
 use crate::api::transaction;
@@ -75,9 +76,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .build()
         .unwrap();
 
+    println!("{}", ASCII_ART);
+
     // Start the RPC
     let server_addr = "[::1]:50051".parse().unwrap();
-    println!("RPC Server listening on {}", server_addr);
+    println!("Kryptokrona Wallet RPC Server listening on {}", server_addr);
     tonic::transport::Server::builder()
         .add_service(address_server)
         .add_service(transaction_server)

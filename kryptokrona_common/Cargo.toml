@@ -8,7 +8,7 @@ description = "Common library in Rust."
 documentation = "https://github.com/kryptokrona/kryptokrona-rs"
 homepage = "https://github.com/kryptokrona/kryptokrona-rs"
 repository = "https://github.com/kryptokrona/kryptokrona-rs.git"
-rust-version = "1.77.1"
+rust-version = "1.78.0"
 
 [lib]
 name = "kryptokrona_common"
