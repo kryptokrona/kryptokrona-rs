@@ -18,6 +18,7 @@ path = "src/main.rs"
 kryptokrona_core = { version = "0.2.0", path = "../kryptokrona_core" }
 
 [dependencies]
+kryptokrona_core = { version = "0.2.0", path = "../kryptokrona_core" }
 tokio = { version = "1", features = ["full"] }
 clap = { version = "4.5.4", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
