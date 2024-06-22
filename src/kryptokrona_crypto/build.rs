@@ -12,7 +12,7 @@ fn main() {
     }
 
     build.warnings(false);
-    build.include("../common/cpp");
+    build.include("../kryptokrona_common/cpp");
 
     build
         .file("c/aesb.c")
@@ -32,5 +32,5 @@ fn main() {
         .file("c/slow-hash.c")
         .include("c");
 
-    build.compile("crypto");
+    build.compile("kryptokrona_crypto");
 }

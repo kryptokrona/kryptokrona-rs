@@ -6,9 +6,9 @@ fn main() {
     build.warnings(false);
     build.cpp(true);
     build.flag("-std=c++17");
-    build.include("../crypto/c");
+    build.include("../kryptokrona_crypto/c");
 
     build.file("cpp/util.cpp").include("cpp");
 
-    build.compile("cppcommon");
+    build.compile("kryptokrona_common");
 }

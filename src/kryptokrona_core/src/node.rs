@@ -4,23 +4,23 @@ use std::{
 };
 
 pub struct Node {
-    timeout: Duration,
-    daemon_host: String,
-    daemon_port: i8,
+    pub timeout: Duration,
+    pub daemon_host: String,
+    pub daemon_port: i8,
     // http_client: Arc<Mutex<Client>>,
-    should_stop: bool,
-    local_daemon_block_count: u64,
-    network_block_count: u64,
-    peer_count: u64,
-    last_known_hashrate: u64,
-    node_fee_address: String,
-    node_fee_amount: u32,
-    background_thread: Option<thread::JoinHandle<()>>,
+    pub should_stop: bool,
+    pub local_daemon_block_count: u64,
+    pub network_block_count: u64,
+    pub peer_count: u64,
+    pub last_known_hashrate: u64,
+    pub node_fee_address: String,
+    pub node_fee_amount: u32,
+    pub background_thread: Option<thread::JoinHandle<()>>,
 }
 
 impl Node {
-    fn new(daemon_host: String, daemon_port: u16) -> Self {
-        let timeout = Duration::frosecs(10);
+    fn new(daemon_host: String, daemon_port: i8) -> Self {
+        let timeout = Duration::from_secs(10);
         // TODO: create a new Hyper Client here
         // let http_client = Arc::new(Mutex::new(Client::new(
         //     format!("{}:{}", daemon_host, daemon_port),
@@ -28,10 +28,9 @@ impl Node {
         // )));
 
         Node {
-            timeout: timeout,
-            daemon_host: daemon_host,
-            daemon_port: daemon_port,
-            // http_client: http_client,
+            timeout,
+            daemon_host,
+            daemon_port,
             should_stop: false,
             local_daemon_block_count: 0,
             network_block_count: 0,
@@ -43,7 +42,7 @@ impl Node {
         }
     }
 
-    fn swap_node(&mut self, daemon_host: String, daemon_port: u16) {
+    fn swap_node(&mut self, daemon_host: String, daemon_port: i8) {
         self.stop();
 
         self.local_daemon_block_count = 0;
@@ -94,12 +93,12 @@ impl Node {
         //     .unwrap();
     }
 
-    pub fn get_fee(&mut self) {
-        // Implementation for getting daemon info
+    pub fn get_fee(&mut self) -> f64 {
+        0.0
     }
 
     pub fn get_address(&mut self) -> String {
-        // Implementation for getting fee info
+        String::new()
     }
 
     pub fn get_host(&mut self) -> String {
@@ -108,5 +107,13 @@ impl Node {
 
     pub fn get_port(&mut self) -> i8 {
         self.daemon_port.clone()
+    }
+
+    pub fn get_daemon_info(&mut self) -> String {
+        String::new()
+    }
+
+    pub fn get_fee_info(&mut self) -> String {
+        String::new()
     }
 }

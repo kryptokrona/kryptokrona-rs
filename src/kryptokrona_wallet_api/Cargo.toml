@@ -1,5 +1,5 @@
 [package]
-name = "wallet_api"
+name = "kryptokrona_wallet_api"
 version = "0.2.0"
 edition = "2021"
 authors = ["Marcus Cvjeticanin <mjovanc@icloud.com>"]
@@ -15,7 +15,7 @@ name = "wallet_api"
 path = "src/main.rs"
 
 [dev-dependencies]
-base = { version = "0.2.0", path = "../base" }
+kryptokrona_core = { version = "0.2.0", path = "../kryptokrona_core" }
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }

@@ -28,7 +28,7 @@
 
 use std::sync::{Arc, Mutex};
 use tonic::{Request, Response, Status};
-use base::wb::WalletBackend;
+use kryptokrona_core::wb::WalletBackend;
 
 use crate::api::node::{
     node_server::Node, GetNodeDetailsRequest, GetNodeDetailsResponse, GetStatusRequest,

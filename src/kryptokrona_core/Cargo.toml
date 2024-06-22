@@ -1,5 +1,5 @@
 [package]
-name = "base"
+name = "kryptokrona_core"
 version = "0.2.0"
 edition = "2021"
 authors = ["Marcus Cvjeticanin <mjovanc@icloud.com>"]
@@ -18,5 +18,5 @@ hyper-util = { version = "0.1", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 
 [lib]
-name = "base"
+name = "kryptokrona_core"
 crate-type = ["staticlib"]

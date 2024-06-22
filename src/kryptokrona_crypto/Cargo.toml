@@ -1,5 +1,5 @@
 [package]
-name = "crypto"
+name = "kryptokrona_crypto"
 version = "0.2.0"
 edition = "2021"
 authors = ["Marcus Cvjeticanin <mjovanc@icloud.com>"]
@@ -11,7 +11,7 @@ repository = "https://github.com/kryptokrona/kryptokrona.git"
 rust-version = "1.77.1"
 
 [lib]
-name = "crypto"
+name = "kryptokrona_crypto"
 crate-type = ["staticlib"]
 
 [dependencies]

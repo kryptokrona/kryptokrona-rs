@@ -10,31 +10,31 @@ pub struct WalletBackend {
 }
 
 impl WalletBackend {
-    fn get_node_fee(&self) -> (u64, String) {
+    fn get_node_fee(&self) -> f64 {
         match self.daemon.lock() {
-            Ok(guard) => guard.get_fee(),
-            Err(_) => (0, String::new()),
+            Ok(mut guard) => guard.get_fee(),
+            Err(_) => 0.0,
         }
     }
 
-    fn get_node_address(&self) -> (u64, String) {
+    fn get_node_address(&self) -> String {
         match self.daemon.lock() {
-            Ok(guard) => guard.get_address(),
-            Err(_) => (0, String::new()),
+            Ok(mut guard) => guard.get_address(),
+            Err(_) => String::new(),
         }
     }
 
-    fn get_node_host(&self) -> (String, u16) {
+    fn get_node_host(&self) -> String {
         match self.daemon.lock() {
-            Ok(guard) => guard.get_host(),
-            Err(_) => (String::new(), 0),
+            Ok(mut guard) => guard.get_host(),
+            Err(_) => String::new(),
         }
     }
 
-    fn get_node_port(&self) -> (String, u16) {
+    fn get_node_port(&self) -> i8 {
         match self.daemon.lock() {
-            Ok(guard) => guard.get_port(),
-            Err(_) => (String::new(), 0),
+            Ok(mut guard) => guard.get_port(),
+            Err(_) => 0,
         }
     }
 
