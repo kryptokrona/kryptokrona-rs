@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2024, The Kryptokrona Project
+// Copyright (c) 2025, The Kryptokrona Project
 //
 // All rights reserved.
 //

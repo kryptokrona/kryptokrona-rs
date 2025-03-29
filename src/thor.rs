@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2024, The Kryptokrona Project
+// Copyright (c) 2025, The Kryptokrona Project
 //
 // All rights reserved.
 //
@@ -26,12 +26,9 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-use std::{
-    thread,
-    time::Duration,
-};
-use std::collections::HashMap;
 use reqwest::Error;
+use std::collections::HashMap;
+use std::{thread, time::Duration};
 
 pub struct Thor {
     pub timeout: Duration,
@@ -127,52 +124,55 @@ impl Thor {
     }
 
     pub async fn get_daemon_info(&mut self) -> Result<(), Error> {
-        let resp = reqwest::get(format!("https://{}:{}/info", self.daemon_host, self.daemon_port))
-            .await?
-            .json::<HashMap<String, String>>()
-            .await?;
+        let resp = reqwest::get(format!(
+            "https://{}:{}/info",
+            self.daemon_host, self.daemon_port
+        ))
+        .await?
+        .json::<HashMap<String, String>>()
+        .await?;
 
         // let response_text = format("{:#?}", resp.);
         println!("{resp:#?}");
 
-            //     const auto res = m_httpClient->Get("/info");
-            //
-            // if (res && res->status == 200)
-            // {
-            //     try
-            //     {
-            //         json j = json::parse(res->body);
-            //
-            //         m_localDaemonBlockCount = j.at("height").get<uint64_t>();
-            //
-            //         /* Height returned is one more than the current height - but we
-            //            don't want to overflow is the height returned is zero */
-            //         if (m_localDaemonBlockCount != 0)
-            //         {
-            //             m_localDaemonBlockCount--;
-            //         }
-            //
-            //         m_networkBlockCount = j.at("network_height").get<uint64_t>();
-            //
-            //         /* Height returned is one more than the current height - but we
-            //            don't want to overflow is the height returned is zero */
-            //         if (m_networkBlockCount != 0)
-            //         {
-            //             m_networkBlockCount--;
-            //         }
-            //
-            //         m_peerCount = j.at("incoming_connections_count").get<uint64_t>() + j.at("outgoing_connections_count").get<uint64_t>();
-            //
-            //         m_lastKnownHashrate = j.at("difficulty").get<uint64_t>() / cryptonote::parameters::DIFFICULTY_TARGET;
-            //
-            //         return true;
-            //     }
-            //     catch (const json::exception &)
-            //     {
-            //     }
-            // }
-            //
-            // return false;
+        //     const auto res = m_httpClient->Get("/info");
+        //
+        // if (res && res->status == 200)
+        // {
+        //     try
+        //     {
+        //         json j = json::parse(res->body);
+        //
+        //         m_localDaemonBlockCount = j.at("height").get<uint64_t>();
+        //
+        //         /* Height returned is one more than the current height - but we
+        //            don't want to overflow is the height returned is zero */
+        //         if (m_localDaemonBlockCount != 0)
+        //         {
+        //             m_localDaemonBlockCount--;
+        //         }
+        //
+        //         m_networkBlockCount = j.at("network_height").get<uint64_t>();
+        //
+        //         /* Height returned is one more than the current height - but we
+        //            don't want to overflow is the height returned is zero */
+        //         if (m_networkBlockCount != 0)
+        //         {
+        //             m_networkBlockCount--;
+        //         }
+        //
+        //         m_peerCount = j.at("incoming_connections_count").get<uint64_t>() + j.at("outgoing_connections_count").get<uint64_t>();
+        //
+        //         m_lastKnownHashrate = j.at("difficulty").get<uint64_t>() / cryptonote::parameters::DIFFICULTY_TARGET;
+        //
+        //         return true;
+        //     }
+        //     catch (const json::exception &)
+        //     {
+        //     }
+        // }
+        //
+        // return false;
         Ok(())
     }
 
