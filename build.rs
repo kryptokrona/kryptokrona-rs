@@ -1,6 +1,16 @@
 extern crate cc;
 
 fn main() {
+    // Build CPP files
+    let mut build = cc::Build::new();
+    build.warnings(false);
+    build.cpp(true);
+    build.flag("-std=c++17");
+    build.include("c");
+    build.file("cpp/util.cpp").include("cpp");
+    build.compile("kryptokrona_common");
+
+    // Build C files
     let mut build = cc::Build::new();
     let tool = build.get_compiler();
 
@@ -12,7 +22,7 @@ fn main() {
     }
 
     build.warnings(false);
-    build.include("../kryptokrona_common/cpp");
+    build.include("cpp");
 
     build
         .file("c/aesb.c")
